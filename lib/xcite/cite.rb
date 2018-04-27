@@ -8,6 +8,13 @@ module Xcite
 		# https://rubygems.org/gems/uri-urn
 		require 'uri/urn'
 
+		module WorkLevel
+			TextGroup = 1
+			Work = 2
+			Version = 3
+			Exemplar = 4
+		end
+
 		##
 		# A URN for a canonically citable text or passage of text.
 		#
@@ -41,6 +48,22 @@ module Xcite
 				# Required textgroup part of work hierarchy.
 				@text_group = @work_parts[0]
 
+			end
+
+			# Enumerated WorkLevel for this workComponent.
+			def work_level
+				@work_parts.length # :(
+			end
+
+			# Optional passage component of the [[CtsUrn]].
+			def passage_component_option
+				case @components.length
+				when 5
+					raise "Invalid URN syntax in passage component #{components[4]}: trailing period." if '.' == @components[4].chars.last
+					@components[4]
+				else
+					nil
+				end
 			end
 		end
 

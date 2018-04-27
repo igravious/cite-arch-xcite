@@ -7,12 +7,12 @@ Gem::Specification.new do |spec|
   spec.name          = "xcite"
   spec.version       = Xcite::VERSION
   spec.authors       = ["Anthony Durity"]
-  spec.email         = ["anthony@durity.com"]
+	spec.email         = ["a.durity@umail.ucc.ie"]
 
-  spec.summary       = %q{TODO: Write a short summary, because RubyGems requires one.}
-  spec.description   = %q{TODO: Write a longer description or delete this line.}
-  spec.homepage      = "TODO: Put your gem's website or public repo URL here."
-  spec.license       = "MIT"
+  spec.summary       = %q{Ruby version of Cite-architecture's Xcite}
+  spec.description   = %q{…}
+  spec.homepage      = "https://github.com/igravious/cite-arch-xcite"
+  spec.license       = "GPLv3"
 
   # Prevent pushing this gem to RubyGems.org. To allow pushes either set the 'allowed_push_host'
   # to allow pushing to a single host or delete this section to allow pushing to any host.
@@ -33,4 +33,6 @@ Gem::Specification.new do |spec|
   spec.add_development_dependency "bundler", "~> 1.16"
   spec.add_development_dependency "rake", "~> 10.0"
   spec.add_development_dependency "rspec", "~> 3.0"
+
+	spec.add_dependency "uri-urn"
 end
