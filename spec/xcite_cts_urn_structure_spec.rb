@@ -1,18 +1,9 @@
 include Xcite::Cite
 
-RSpec.describe Xcite do
-	# Something like
-	#
-	# I.1.H = BOOK I.: THE END.
-	# I.1.0 = 1.: In all he does man seeks same good as end or means.
-	# I.1.1 = Every art and every kind of inquiry, and likewise every act and purpose, seems to aim at some good: and so it has been well said that the good is that at which everything aims.
-	#
+RSpec.describe "Xcite::Cite Structure" do
 	simple_passage_urn = CtsUrn.new('urn:cts:UCCphilText:aristotle.nico.peters1893:I.1.1')
 
-	# Xcite
-  it 'should have a version number' do
-    expect(Xcite::VERSION).not_to be nil
-	end
+	# CtsUrnStructureSpec.scala
 
 	# CtsUrn
 	it 'should have a namespace' do
@@ -24,7 +15,7 @@ RSpec.describe Xcite do
   # end
 
 	# CtsUrn	
-	it 'should hav a hierarchical work component' do
+	it 'should have a hierarchical work component' do
 		expect(simple_passage_urn.work_component).to eq('aristotle.nico.peters1893')
 	end
 
@@ -36,7 +27,13 @@ RSpec.describe Xcite do
 	# CtsUrn
 	it 'should allow a none option for passage component' do
 		work_only = CtsUrn.new('urn:cts:UCCphilText:aristotle.nico.peters1893:')
-		expect(work_only.passage_component_option).to be nil
+		expect(work_only.passage_component_option).to be_nil # TODO: should be able to test against None
 	end
 
+	# this is an extra one
+	
+	# CtsUrn
+	it 'should raise an exception for malformed passage component' do
+		expect {CtsUrn.new('urn:cts:UCCphilText:aristotle.nico.peters1893.:I.')}.to raise_exception(RCiteException)
+	end
 end
